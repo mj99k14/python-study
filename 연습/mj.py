@@ -354,13 +354,162 @@
 
 
 
-book = []
+# book = []
 
 
-while True:
-    book_tittle=input("도서 제목을 입력하세요 (종료하려면 '종료' 입력):   " )
-    if book_tittle == '종료':
-        break
-    book.append(book_tittle)
+# while True:
+#     book_tittle=input("도서 제목을 입력하세요 (종료하려면 '종료' 입력):   " )
+#     if book_tittle == '종료':
+#         break
+#     book.append(book_tittle)
 
-print("도서 목록:", book)    
+# print("도서 목록:", book)    
+
+
+
+# bar=[10,20,30,40]
+# for index in range(0,len(bar)): #0,3: len(리스트) -리스트의 원소 개수
+#     print(bar[index]) #index 0 ->2
+
+
+
+
+# bar =[value for value in range(10,20)]
+# print(bar)
+# #[10,11,12,13,14,15,16,17,18,91]
+
+# #slicing
+# #참조 변수[start:stop:step]
+# foo =bar[0: 4: 1]
+# print("foo :",foo)
+# print("bar :",bar)
+
+
+
+# for i in range(1,101):
+#     if i %3 ==0 or  i %7 ==0:
+#         print(i, "\t",end="" )
+
+
+# for i in range(1,101):
+#     if i %3 ==0 and  i %7 ==0:
+#         print(i, "\t",end="" )
+
+
+
+# count = 0
+# s=0
+# for i in range(1,6):
+#     use =int(input())
+#     s+= i
+    
+# print(F"합계 {s}")
+# a= s/5 
+# print(f"평균 {a}")
+
+
+
+
+
+
+# input_num = 5
+# sum =0 
+# avg = 0.0
+# input_value= int(input())
+# if input_value <0:
+#     print("에러")
+      
+#     while True:
+#         if input_value >0 :
+#             for t in range(0,input_num):
+#             msg = str(t) +"번쨰 입력:"
+#             input_value = int(input(msg))
+    
+#             sum = sum +input_value
+# avg = sum / input_value
+# print(sum,avg)
+    
+    
+ #정수 5개받아서  평균 합계 구하기  
+# input_num = 5
+
+# sum = 0
+# avg = 0.0
+
+# for trial_count in range(1, input_num + 1):
+#     while True:
+#         msg = str(trial_count) + "번째 입력 : "
+#         input_value = int(input(msg))
+#         if input_value >0 : # 0보다 작으면 다시돌아가기
+#             break
+#     sum += input_value
+    
+# avg = sum /input_num
+
+# print(sum, avg)    
+
+
+
+
+
+
+# for i in range(1,20,2):
+#     print(i,end="")
+    
+    
+    
+# for i in range(1,20):
+#     if i %2 != 0:
+#         print(i)
+
+
+
+
+# import random
+# #1 에서 100 까지의 랜덤 정수를출력하세요
+# random_number = random.randint(1,101)
+# list_num =[]
+# while True:
+#     n = int(input("값을 입력하세요(1-100)"))
+#     #n값이 1~100이아니면 에러 입니다
+#     if 1 > n or  100> n:
+#         print("에러다 이자식아")
+#         break
+#     #n값 안에 들어간다면 n값만큼 랜덤수를 뽑아낸다
+#     for n in range(1,101):
+#         print(list_num[n])
+# #인덱스를 받는다  범위는 n값만큼 랜덤 리스트안에서 받는다
+# #범위를 벗어나면 에러
+
+
+
+
+
+
+result_1 = 1 + 2
+
+result_2 = 2 + 1.5
+
+result_3 = 3 * 2
+
+result_4 =  6 / 2
+
+print(result_1,result_2,result_3,result_4)
+
+print(type(result_1),type(result_2),type(result_3),type(result_4))
+
+
+#실수와 정수를 나누면 몫과 나머지를 나와야하기때문에 정수를 실수로 변환한다
+
+
+result_1 = 2**3   # ** 거듭제곱 2의3
+print(result_1)
+
+
+for v in range(11): #10까지 돌면서 거듭제곱을 찾는다
+    print(2**v)     #v = 0 일 때, 2**0 = 1
+                    # v = 1 일 때, 2**1 = 2
+                    # v = 2 일 때, 2**2 = 4
+                    # v = 3 일 때, 2**3 = 8
+                    # v = 4 일 때, 2**4 = 16
+                    # v = 10 일 때, 2**10 = 1024
