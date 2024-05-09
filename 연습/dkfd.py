@@ -1,4 +1,11 @@
-user = str(input("문자열 입력:"))
-lan =str("단어 입력")
-not in  user:
-  print(lan)
+n = 5  
+t = 1
+for i in range(n):#세로
+    #가로 
+    for i in range(n-1):
+        print(" ",end="")
+    n-=1
+    for j in range(t):
+        print("*",end="")
+    t+=1
+    print()
