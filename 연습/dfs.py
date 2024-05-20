@@ -76,3 +76,26 @@
 #     print(generate_password)
 # else:
 #     print("3자리 미만의 패스워드는 생성할 수 없습니다. ")
+
+
+value = 4
+if not value:
+    print("참")
+else:
+    print("거짓")
+    
+value = 2
+if not value:
+    print("안녕")
+else:
+    print("거꾸로")
+    
+# 그럼 if 문에서 
+if not value < 5: #반대로 5이상
+   print("이게 정답일껄")
+else:
+    print("이거틀리면 이해못한거임")
+    
+
+
+

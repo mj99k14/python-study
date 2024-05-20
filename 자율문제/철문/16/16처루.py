@@ -65,7 +65,7 @@ def getRandValue():
     count = 0
 
     while count < 3:
-        rand_value = random.randint(1, 10)
+        rand_value = random.randint(1, 9)
         found_duplicated_value = False
         
         for sub_count in range(count):
@@ -93,45 +93,48 @@ count_ball = 0
 user_list = []
 com_list= getRandValue()
 while True:
-    #사용자 입력
-    if count_game_trial >= 6:
-        break
-    
-    input_str = input(f"시도 {count_game_trial}: 입력한 숫자: ")
-    user_list_split = input_str.split(" ")
-    user_list.append(user_list_split)
- 
-
-    #변수 업데이트
-   
-    
-    if user_list[0]==com_list[0] and\
-        user_list[1]==com_list[1]and\
-        user_list[2]==com_list[2]:
-        count_strike+=3
-        msg =(f"{count_strike}strike,{count_ball} ball")
-        print(msg)
-        print(f"게임 종료: 승리 ")
-        print(f"정답{com_list}")
-        break
-    if  user_list[0]in com_list or\
-        user_list[1]in com_list or\
-        user_list[2]in com_list :
+    #strike 충족
+    user_list1,user_list2,user_list3=map(int,input(f"시도 {count_game_trial}: 입력한 숫자: ").split())    
+    if user_list1==com_list[0]:
+        count_strike+=1
+    if user_list2==com_list[1]:
+        count_strike+=1
+    if user_list3==com_list[2]:
+        count_strike+=1
+    #ball   
+    if user_list1==com_list[1]or user_list1==com_list[2]:
         count_ball+=1
-        msg=(f"결과:{count_ball}ball,{count_strike_out}out")
+    if user_list2==com_list[2]or user_list2==com_list[0]:
+        count_ball+=1
+    if user_list3==com_list[1]or user_list3==com_list[0]: 
+        count_ball+=1
+     #out   
+    if  user_list1!=com_list[0]and user_list1!=com_list[1]and  user_list1!=com_list[2]:
+        if user_list2!=com_list[0]and user_list2!=com_list[1]and  user_list2!=com_list[2]:
+            if user_list3!=com_list[0]and  user_list3!=com_list[1]and user_list3!=com_list[2]:
+                count_strike_out+=1
+       #out 은 1이상 부터 표시한다해
+    if count_strike_out >= 1 :
+        print(f"{count_strike}strike,{count_ball}ball,{count_strike_out}out")
     else:
-        count_strike_out+=1
-        msg=(f"결과:{count_strike}strike,{count_ball}ball,{count_strike_out}out")
-    
-        print(msg)
-    #종료 조건:패배
-        
-        
-    
-    if count_strike_out >=2 or count_game_trial >6:
-        print(f"게임 종료: 패배(시도 횟수{count_game_trial}초과)\n정답 {com_list}")
-    
+        print(f"{count_strike}strike,{count_ball}ball")
+    #패~배
+    if  count_game_trial >= 5:
+            print(f"게임종료 : (시도횟수({count_game_trial}회 초과))")
+            print(f"{com_list[0]} {com_list[1]} {com_list[2]}")
+            break
+    elif  count_strike_out >= 2:
+        print(f"게임종료 : (시도횟수({count_strike_out}회 초과))")
+    #승~리
+    elif count_strike == 3:
+        print(f"게임 종료: 승리 ")
+        print(f"{com_list[0]} {com_list[1]} {com_list[2]}")
         break
-   
-    count_game_trial+=1
+
+    count_game_trial+=1        
+    #리셋
+    count_strike = 0
+    count_ball = 0
+
+
 

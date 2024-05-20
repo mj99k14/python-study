@@ -10,21 +10,27 @@ while True:
     computer = random.choice(choices)
     print(f"컴퓨터: {computer}")
    
-    if (user == "가위"and computer =="보") or (user == "바위"and computer =="가위") or (user == "보"and computer =="묵"):
+    if user == "가위"and computer =="보" or user == "바위"and computer =="가위" or user == "보"and computer =="묵":
         win += 1
         print(f"승리! 현재 전적:{win}승{lose}패{draw}무")
-    elif(user == "가위"and computer =="바위") or(user == "바위" and computer =="보") or (user == "보" and computer =="가위"):
+    elif user == "가위"and computer =="바위" or user == "바위" and computer =="보" or user == "보" and computer =="가위":
         lose += 1
         print(f"승리! 현재 전적:{win}승{lose}패{draw}무")
-    elif (user == computer ) or(user ==  computer) or(user == computer):
+    elif user == computer  or user ==  computer or user == computer:
         draw += 1
         print(f"무승부! 현재 전적 :승리! 현재 전적:{win}승{lose}패{draw}무")
-    else:
+        break
+    else :
         print("가위,바위,보 중에서 선택하셈")
-        continue
+        continue  
+    
+    
+
 # • 게임은 3판 2선승제로 진행
-    if win ==2:
-        print(f"전적:{win}승{lose}패{draw}무\n최종 승자:사용자 ")
+    if win ==2 :
+        print(f"전적:{win}승{lose}패{draw}무\n최종 승자:사용자")
+    elif lose ==2:
+        print(f"전적:{win}승{lose}패{draw}무\n최종 승자:컴퓨터")
         break
         
 # • 매 게임마다 승, 패, 무의 결과가 출력

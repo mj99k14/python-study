@@ -151,12 +151,12 @@
 #         print("*",end="")
         
 #     print()               #for문 안에 있어서 print()두줄 띄우기
-#     print()
+# #     print()
     
-str_n1= input("문자열 입력: ")
-words = input("단어 입력")
-count =0
-for words in str_n1:
-    count+=words
-    print(f"단어{words}의 출현 빈도{count}")
-    
+# str_n1= input("문자열 입력: ")
+# words = input("단어 입력")
+# count =0
+# for words in str_n1:
+#     count+=words
+#     print(f"단어{words}의 출현 빈도{count}")
+
