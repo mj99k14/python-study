@@ -60,6 +60,7 @@ for : 반복문.
 range : 범위. ex) for i in range()
 while : 1을 붙이면 계속 반복.
 break(if 으로 조건을 만들어 줘야함) 
+continue:조건으로 설정한것은 건너뜀 ex)if i % 2 ==0 ->2의배수는 건너뜀
 if : 만약에.
 elif : ~도 아니면.
 else : 그 외. 
