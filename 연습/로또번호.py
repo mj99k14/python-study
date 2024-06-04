@@ -6,7 +6,6 @@ while len(list_m)<6:
     if random_mun not in list_m:
         list_m.append(random_mun)
 
+# 정렬: 선택된 번호는 오름차순으로 정렬하여 출력해야 합니다
 list_m.sort()
 print(list_m)
-# 정렬: 선택된 번호는 오름차순으로 정렬하여 출력해야 합니다
-
