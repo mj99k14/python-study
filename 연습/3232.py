@@ -160,3 +160,34 @@
 #     count+=words
 #     print(f"단어{words}의 출현 빈도{count}")
 
+
+import random
+
+# 3개 단어 리스트 범위, 3이상 20이하
+list_word = ["helloj", "applej", "applej"]
+
+# 단어 랜덤 선택
+random_word = list_word[random.randint(0, 2)]
+print("Random word:", list(random_word))
+
+# 같은 리스트 만들어주기
+same_list = list(random_word)[:]
+print("Same list:", same_list)
+
+# 블라인드 글자수 계산
+random_count = len(random_word)
+r = random_count // 2
+if random_count % 2 != 0:  # random_count가 홀수인 경우
+    r += 1
+print(f"Number of characters to blind: {r}")
+
+# 블라인드 처리
+for _ in range(r):
+    if same_list:  # 리스트가 비어 있지 않은 경우에만 삭제
+        del same_list[random.randint(0, len(same_list) - 1)]
+print("List after deletion:", same_list)
+
+# 남은 문자들을 '_'로 변경
+for i in range(len(same_list)):
+    same_list[i] = "_"
+print("Blinded list:", same_list)
