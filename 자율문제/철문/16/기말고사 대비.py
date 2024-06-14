@@ -8,7 +8,7 @@ def get(arg_start = 0 , arg_end = 10):
 
     return rand_list
 
-rand_list =get(arg_start = 0 ,arg_end = 10)
+rand_list = get()
 print(f"생성된 난수 값: ", rand_list)
 
 count_trial = 0
