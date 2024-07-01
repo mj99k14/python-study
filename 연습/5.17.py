@@ -1,2 +1,3 @@
-user_input =[int(input()) for _ in range(3)]
-print("user_input")
+arg_a,arg_b = map(int,input().split())
+for i in range(arg_a,arg_b):
+    

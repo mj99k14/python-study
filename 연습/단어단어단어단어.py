@@ -38,7 +38,7 @@ count = 1
 while True:
     count_1 = 0
     
-    print(f"단어 선택 완료 게임을 시작합니다. 선택된 단어:{user_choice}")
+    print(f"단어 선택 완료 게임을 시작합니다. ")
     print(f"{count}번쨰 시도, 아래 단어를 구성하는 알파벳 한개 입력하세요. ")
     print(s_list)
     user_input = input()

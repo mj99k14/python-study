@@ -1,13 +1,16 @@
+# 중복되지 않은 난수 값 3개 생성(0 ~ 9)
 import random
-random_num = [value for value in range(0,10)]
-for i in range(7):
-    del random_num[random.randint(0,len(random_num)-1)]
 
-print(random_num)
-rand_list = random_num
+rand_list = [value for value in range(0, 10)]
 
-count_strike_out =0
+for _ in range(7):
+    del rand_list[random.randint(0, len(rand_list) - 1)]
+
+print(f"생성된 난수 값: ", rand_list)
+
 count_trial = 0
+count_strike_out = 0
+
 while True:
     count_strike = 0
     count_ball = 0
@@ -15,7 +18,7 @@ while True:
     # 사용자로부터 정수 3개 입력
     input_values = input()
     
-    input_list = [int(value) for value in input_values.split()]
+    input_list = [int(value) for value in input_values.split()] #split을 썻기때문에 input으로 받고 int형으로 받아야한다
 
     # strike, ball 판별
     for i in range(3):
@@ -26,12 +29,12 @@ while True:
                 else:
                     count_ball += 1
 
-    print(f"스트라이크ㅋ : {count_strike}, 볼ㅋ: {count_ball}")
+    print(f"스트라이크 : {count_strike}, 볼 : {count_ball}")
     
     # strike out 판별
     if count_strike == 0 and count_ball == 0:
         count_strike_out += 1
-        print(f"스트라이크 아웃ㅋ: {count_strike_out}")
+        print(f"스트라이크 아웃: {count_strike_out}")
 
     # 게임종료 조건
     #  - strike 3개
@@ -46,3 +49,5 @@ while True:
         break
     
     count_trial += 1
+    
+    
