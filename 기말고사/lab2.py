@@ -1,7 +1,7 @@
 import random
 
 
-def print_bingo_board(arg_list, col_num = 3):#arg_list는 빙고보드요소 리스트 ,열의수는 3
+def print_bingo_board(arg_list, col_num):#arg_list는 빙고보드요소 리스트 ,열의수는 3
     for index in range(len(arg_list)):
         print(arg_list[index], "\t", end="")
         
@@ -44,6 +44,7 @@ while bingo_count < 2:
     
     # 랜덤 넘버 생성 : 1 ~ 36
     rand_num = random.randint(1, 36)
+    print(rand_num)
     
     #빙고 보드 내 생성된 랜덤 값이 있을 경우 "*"로 변경
     for index in range(bingo_element_num):
@@ -52,7 +53,7 @@ while bingo_count < 2:
             break
 
     # 빙고 보드 출력
-    print_bingo_board(bingo_board)
+    print_bingo_board(bingo_board, N)
 
     # 빙고 검사
     # 가로 확인 알고리즘
