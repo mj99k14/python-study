@@ -36,18 +36,11 @@
 # bar =[[0  for s in range(4)],[[0]*4],[s for s in range(5,9)]]
 # print(bar)
 
-
-
-
-
 # bar = [[10,20,30],[40,50],[60,70,80,90]]
 # for row in bar: # ->  세로 : 3줄 ->브라켓 개수 
 #     for item in row: #[안에원소들을 돌음] -> 가로 
 #         print(item,end=' ')
 #     print()
-
-
-
 
 rows = int(input("Enter the number of rows: "))
 columns = int(input("Enter the number of columns: "))
@@ -65,3 +58,5 @@ for row in matrix:
     for item in row:
         print(item,end=' ')
     print()
+    
+
