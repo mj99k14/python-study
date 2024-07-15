@@ -28,12 +28,6 @@ while True:
         data +=1 
 
     elif choice == 2:
-        # print(s_list)
-        # print("*"*20)
-        # for i in s_list:
-        #     for item in i:
-        #         print(item, "\t", end="")
-        #     print()
         for i in s_list:
             print(f" id:{i[0]} name:{i[1]} kor:{i[2]} eng:{i[3]} math:{i[4]} sum:{i[5]} avg:{i[6]}")
     else:
