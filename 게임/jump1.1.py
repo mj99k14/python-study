@@ -29,6 +29,7 @@ while running:
                 random_y = random.randint(0,screen.get_height() - rect_height)
                 rect.topleft = (random_x,random_y)
 
+
     screen.fill((255,255,255))
     pygame.draw.rect(screen,Blue,rect)
     pygame.display.flip()
