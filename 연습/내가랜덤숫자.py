@@ -23,5 +23,5 @@ while count  < 5:
         break
 
     if count <= -1:
-        print(f"おなたのチャンス終わりだよ～正解はこれだよ{com_random}だよ")
+        print(f"あなたのチャンス終わりだよ～正解はこれ{com_random}だよ")
         break

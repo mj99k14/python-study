@@ -1,16 +1,17 @@
-t = int(input())
-s = [ ]
-for i in range(t):
-    a,b = input().split()
-    a  = int(a)
-    for ia in b:
-        s.append(ia * a)
-    print(' '.join(s))
-print()
+n  = input()
+#알파벳 이랑 같이 -1
+#a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z
+ap = "abcdefghijklmnopqrstuvwxyz"
+for i in ap:
+    if i in n:
+        print(n.index(i),end=" ")
+    else:
+        print("-1",end=" ")
 
-a = int(input())
-for i in range(a):
-  b, c = input().split()
-  for i in range(len(c)):
-    print(int(b) * c[i], end='')
-  print()                                       
+
+
+
+
+  
+
+
