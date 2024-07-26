@@ -1,4 +1,13 @@
-n,m = input().split() 
-d =[1,1,1,2,2,2,0,1,0]
-z = [3,3,3,4,4,4,5,5,100]
-s =[d+z for i in range(3) for z in range(3)] 
+a,b = [],[]
+n,m =map(int,input().split())
+for i in range(n):
+    row = list(map(int,input().split()))
+    a.append(row)
+for s in range(m):
+    col = list(map(int,input().split()))
+    b.append(col)
+for row in range(n):
+    for col in range(m):
+        print(a[row][col]+ b[row][col],end="")
+    print()
+
