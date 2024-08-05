@@ -1,16 +1,28 @@
-N =int(input())
-# for _ in range(N):
-s = list(map(int,input().split()))
-print(s)
-a = []
+# N =int(input())
+# s = list(map(int,input().split()))
+# c = 0
+
+
 # for i in s:
-#     if s[i] % 1== 0 and s[i] % s[i] == 0:
-#         a.append(s)
-# aa= sum(a)
-# print(len(aa))
 
-for i in range(1,s+1):
-    if s[i] % i == 0:
-        a.append(s[i])
 
-print(a)
+#     if s[i] % i ==0:
+#         c += 1
+# print(c)
+
+
+n = int(input())
+nums = list(map(int, input().split()))
+result = 0
+
+for num in nums:
+    cnt = 0
+    if num > 1:
+        for i in range(2, num):
+            if num % i == 0:
+                cnt += 1
+        
+        if cnt == 0:
+            result += 1
+    
+print(result)
