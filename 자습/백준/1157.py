@@ -1,13 +1,11 @@
-# words = input()
-# l = len(words)
-# s = [0 for s in range(l)]
-# # m = max(words)
-# for c in words:
-#     s[c] += 1
-# print(s)
+word = input().upper()
+s_w = list(set(word))
+print(s_w)
+word_list =[word.count(i) for i in s_w]
 
-words = input()
-words_list = []
-w_s = set(words)
-for s in w_s:
-    words_list.append(s)
+print(word_list)
+
+if word_list.count(max(word_list)) > 1:
+    print("?")
+else:
+    print(max(word))
