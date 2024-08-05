@@ -25,6 +25,6 @@ while running:
 
     # 지금까지 메모리에 작성된 그림을 화면(Screen)에 출력
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(60) # clock.tick(fps number) -> 1sec/ fps number -> delta time 
 
 pygame.quit()
