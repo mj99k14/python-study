@@ -54,7 +54,7 @@ while running:
        red_rect.y -= speed
     if keys[pygame.K_s]:
        red_rect.y += speed
-
+    # 이미지가 화면 밖으로 나가지않도록 경계처리
     blue_rect.x = max(0, min (blue_rect.x, screen.get_width() - blue_rect.width))
     blue_rect.y = max(0, min (blue_rect.y, screen.get_width() - blue_rect.height))
     red_rect.x = max(0, min (red_rect.x, screen.get_width() - red_rect.width))
