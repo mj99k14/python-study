@@ -12,17 +12,15 @@
 
 
 n = int(input())
-nums = list(map(int, input().split()))
-result = 0
+s = list(map(int, input().split()))
+r = 0 #소수의 개수를 저장할 변수
 
-for num in nums:
-    cnt = 0
-    if num > 1:
-        for i in range(2, num):
-            if num % i == 0:
-                cnt += 1
+for a in s:
+    x = 0 # 약수개수를 세기위해
+    if a > 1:
+        for i in range(2, a):
+            if a % i == 0:
+                x += 1
         
-        if cnt == 0:
-            result += 1
-    
-print(result)
+        if x == 0: # 소수가 맞으니깐 
+               r += 1
