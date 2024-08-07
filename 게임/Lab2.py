@@ -36,4 +36,3 @@ for _ in range(num_circles):
     radius = random.randint(10,100)
     color =(random.randint(0,255),random.randint(0,255),random.randint(0,255))
 
-po

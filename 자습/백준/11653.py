@@ -7,16 +7,17 @@
 #             s 
             
 
-
 n =int(input())
 d = []
-p = []
-for i in range(2,n):
-    if n % i ==0:
-        s = n // i
-        d.append(s)
-        for s in d:
-           a = s //i
-           p.append(a)
+while n <1:
+    for i in range(2,n):
+        if n % i == 0:
+            n = n / i
+            d.append(i)
 
-print(p)
+
+
+       
+
+   
+       
