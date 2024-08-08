@@ -14,7 +14,7 @@ while n <1:
         if n % i == 0:
             n = n / i
             d.append(i)
-
+print(d)
 
 
        

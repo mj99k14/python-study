@@ -21,7 +21,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     dt = clock.tick(30) /1000.0
-
     screen.fill((0,0,0))
     pygame.draw.circle(screen, (255,0,0),(x,y),40)
     x += speed
