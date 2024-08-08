@@ -10,7 +10,7 @@ running = True
 # 사각형 정의
 rect1 = pygame.Rect(screen.get_width()/2 - 40 , 0, 80, 40)
 rect2 = pygame.Rect(screen.get_width()/2 - 150 ,screen.get_height()/2 - 100 , 300, 200)
-
+rect2.center = screen.get_rect().center
 # 객체 이동 속도
 speed = 300 # 300 pixel / second
 
@@ -21,6 +21,9 @@ while running:
 
     dt = clock.tick(60) / 1000 # dt 프로그램 실행 멈춤    
     
+    #빨간색 이전좌표를 저장 ->충돌시 원래 자리로 돌아가기위해서
+    previous_pos =rect1.topleft
+
     keys = pygame.key.get_pressed()
     
     # 왼쪽 방향키가 눌러졌을 때
@@ -42,12 +45,14 @@ while running:
     rect1.x = max(0,min(rect1.x, screen.get_width()- rect1.width)) #->rect1는 음수값을 가질수없다
 
     rect1.y = max (0,min(rect1.y,screen.get_height()- rect1.height))
-   
+    #충돌 감지
     if rect1.colliderect(rect2):
         print("충돌 발생")
-        screen.fill(255,255,255)
-        pygame.display.flip()
-        running= False
+        rect1.topleft = previous_pos
+
+        # screen.fill(255,255,255)
+        # pygame.display.flip()
+        # running= False
     # 화면을 흰색으로 칠한다.
     screen.fill((255, 255, 255))
     pygame.draw.rect(screen, (255, 0, 0), rect2)
@@ -59,5 +64,4 @@ while running:
     
     
 pygame.quit()
-
 
