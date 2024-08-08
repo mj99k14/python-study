@@ -11,7 +11,7 @@ BLUE = (0, 0, 255)
 
 #게임 패들 
 # 패들 설정
-paddle_width = 200
+paddle_width = 60
 paddle_height = 10
 paddle_speed = 500
 paddle = pygame.Rect(350, 550, paddle_width, paddle_height)
@@ -79,12 +79,13 @@ while running:
     if ball.colliderect(paddle):
         ball_speed[1] = -ball_speed[1]
         ball_count += 1
-        print(f"횟수는:{ball_count} 입네다~")
+        print(f"count:{ball_count}")
         
     
     #공이 바닥이랑 부딪힘
     if ball.bottom >= screen.get_height():
         running = False
+        print("The end~^_^ loser^_^")
 
     screen.fill((255, 255, 255))
     screen.fill(BLACK)
