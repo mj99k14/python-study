@@ -19,7 +19,7 @@ paddle = pygame.Rect(350, 550, paddle_width, paddle_height)
 
 The_end = pygame.image.load("theend.png")
 The_end_rect = The_end.get_rect()
-The_end_rect.topleft = (400,300)
+The_end_rect.topleft = (250,150)
 # 공 설정
 ball_image = pygame.image.load("kkk.png")
 ball_rect = ball_image.get_rect()
@@ -43,7 +43,7 @@ while running:
     if keys[pygame.K_LEFT]:
         paddle.x = paddle.x - paddle_speed * dt
     # 오른쪽 방향키가 눌러졌을 때
-    if keys[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT]: 
         paddle.x += paddle_speed * dt 
     #패들이 화면안에서 움직이기위해서
     # paddle.x += speed * dt
