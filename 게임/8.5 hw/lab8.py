@@ -49,9 +49,9 @@ while True:
     m_x, m_y = random.randint(0, screen_width - m_width), random.randint(0,screen_height - m_height)
     moving_rect =  pygame.Rect(m_x,m_y ,m_width, m_height)
     if moving_rect.collidelist(obstacles) == -1 and  moving_rect.collidelist(items) == -1:
-        break
+        break # -> 아무것도 부딪히지않는곳에 배치잘됫는말
 
-velocity = 300
+velocity = 300 
 clock = pygame.time.Clock()
 
 running = True
@@ -60,7 +60,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    previous_position = moving_rect.topleft
+    previous_position = moving_rect.topleft # 충돌시 움직이는객체 되돌리기위해 왼쪽위모서리 기록
 
     dt = clock.tick(60)/1000.0
 

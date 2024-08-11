@@ -10,7 +10,7 @@
 # elif sum_s > n:
 #     print(n, "is NOT perfect.")
 # else:
-#     pass
+#     pass  ``
 
 while True:
     n = int(input())
