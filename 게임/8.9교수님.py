@@ -104,6 +104,8 @@ while running:
         moving_rect.y -= speed * dt
     
     # 화면 경계 처리    
+    #mix 시작하는이유 무조건 0부터 시작하기위해서 
+    #min은 현재 좌표값이 최대값 을 넘으면 안되니깐 min을 사용한다
     moving_rect.x = max(0, min(moving_rect.x, screen.get_width() - moving_rect.width))
     moving_rect.y = max(0, min(moving_rect.y, screen.get_height() - moving_rect.height))
 
