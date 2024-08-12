@@ -90,6 +90,7 @@ while running:
     if b_rect.colliderect(s_rect) == True:
         count_e += 1
         b_rect.x = -100
+        
          
 
     if s_rect.collidelist(fall_rect_list) != -1:
