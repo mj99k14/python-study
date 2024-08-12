@@ -30,7 +30,7 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and not jumping:
                 rect_speed_y = jump_speed
-                jumping = True
+                jumping = True  
             if event.key == pygame.K_LEFT:
                rect_x -=rect_speed_x
             elif event.key == pygame.K_RIGHT:
