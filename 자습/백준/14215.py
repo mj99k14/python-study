@@ -1,8 +1,8 @@
-a = map(int(input().split( )))
-a.sort()
-s = a[2]
-p = a[:2]
-if a[0]==a[1]==a[2]:
+a = sorted(list(map(int,input().split())))
+if a[0]+ a[1] > a[2]:
     print(sum(a))
-elif :
-
+else:
+    # print((a[0] + a[1]) * 2 -1)
+    print(a[0]+ a[1]+ a[0]+ a[1] -1)
+    # 1 + 1 + (1+1-1)
+    #1+1 *2 -1

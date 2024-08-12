@@ -8,6 +8,6 @@ for s in range(m):
     b.append(col)
 for row in range(n):
     for col in range(m):
-        print(a[row][col]+ b[row][col],end="")
+        print(a[row][col]+ b[row][col],end=" ")
     print()
 
