@@ -12,6 +12,9 @@ BLUE =(0, 0, 255)
 RED = (255, 0 ,0)
 GREEN = (0, 255 ,0)
 YELLOW = (255, 255 , 0)
+
+background_music = pygame.mixer.music.load("tfile.mp3")
+pygame.mixer.music.play(-1)
 #장애물 생성 함수
 def create_obstacles(num_obstacles, size , screen_width, screen_height):
 
