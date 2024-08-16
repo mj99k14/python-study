@@ -1,8 +1,20 @@
 import pygame
+import os
+
+
+# 현재 파일이 있는 디렉토리 경로를 가져옵니다.
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+# 파일 이름을 지정합니다.
+filename = "background.mp3"
+
+# 파일의 전체 경로를 만듭니다.
+file_path = os.path.join(current_directory, filename)
+
 
 pygame.init()
 
-background_music = pygame.mixer.music.load("background.mp3")
+background_music = pygame.mixer.music.load(file_path)
 
 pygame.mixer.music.play(-1) # 음악 무한반복
 

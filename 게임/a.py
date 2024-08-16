@@ -1,3 +1,13 @@
+
+# foo = [2, 3, 4, 5]
+
+
+# for item in foo:
+#     foo.remove(item)
+
+
+# print(foo)
+
 import pygame
 import random
 

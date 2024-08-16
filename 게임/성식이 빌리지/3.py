@@ -1,186 +1,173 @@
-import random
 import pygame
-import json
-import os
+import random
+import math
+import time
 
+# 파이게임 초기화
 pygame.init()
 
-screen_width = 1280
-screen_height = 720
+# 화면 크기 설정
+screen_width, screen_height = 1280, 720
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("하늘에서 성식이가 내려와요")
+pygame.display.set_caption("Basketball Game")
 
+# 색상 정의
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+
+# 게임 속도 설정
 clock = pygame.time.Clock()
+FPS = 60
+
+# 플레이어 설정
+player_x = 100
+player_y = screen_height - 100
+player_width = 50
+player_height = 100
+
+# 농구 골대 설정
+hoop_width = 100
+hoop_height = 20
+hoop_x = screen_width - 150
+hoop_y = random.randint(100, screen_height - 200)
+
+# 공 설정
+ball_radius = 15
+ball_x = player_x + player_width
+ball_y = player_y - ball_radius
+ball_angle = 45  # 초기 각도
+ball_fired = False  # 공이 발사되었는지 여부
+ball_power = 0  # 공의 발사 파워
+max_power = 40  # 최대 파워
+
+# 중력 및 속도
+gravity = 0.5
+ball_velocity_x = 0
+ball_velocity_y = 0
+
+# 점수
+score = 0
+
+# 공 발사 후 초기화 타이머
+ball_fired_time = None
+
+# 게임 시간 제한
+start_time = time.time()
+time_limit = 60  # 제한 시간 1분 (60초)
+
+# 게임 루프
 running = True
-
-# 게임 변수
-fall_rect_width = 25
-fall_rect_height = 25
-
-# 움직이는 성식이
-s_i = pygame.image.load("ss.png")
-s_rect = s_i.get_rect()
-s_rect.topleft = (screen_width // 2 - s_rect.width, screen_height - s_rect.height)
-
-# 보너스 아이템
-b_i = pygame.image.load("s.png")
-b_rect = b_i.get_rect()
-b_width = b_rect.width
-b_height = b_rect.height
-
-count_e = 0
-
-fall_rect_list = []
-
-def geta():
-    for _ in range(random.randint(6, 15)):
-        while True:
-            rect_x = random.randint(0, screen_width - fall_rect_width)
-            rect = pygame.Rect(rect_x, 0, fall_rect_width, fall_rect_height)
-            if rect.collidelist(fall_rect_list) == -1:
-                fall_rect_list.append(rect)
-                break
-
-# 객체 이동 속도
-speed = 100  # 300 pixel / second
-s_speed = 200  # 성식이 스피드
-count = 0
-
-# 배경음악 파일 로드
-background_music = pygame.mixer.music.load("tfile.mp3")
-sound_fire = pygame.mixer.Sound("fire.mp3")
-the_end = pygame.mixer.Sound("loser.mp3")
-# 배경음악 무한 반복 재생 시작(-1은 무한 반복을 의미)
-pygame.mixer.music.play(-1)
-
-# 기록 파일 이름
-record_file = "records.json"
-
-# 기록 파일을 로드하는 함수
-def load_records():
-    if os.path.exists(record_file):
-        with open(record_file, "r") as file:
-            return json.load(file)
-    return []
-
-# 기록을 저장하는 함수
-def save_records(records):
-    with open(record_file, "w") as file:
-        json.dump(records, file)
-
-# 현재 게임의 기록을 추가하고 등수를 계산하는 함수
-def add_record(elapsed_time):
-    records = load_records()
-    records.append(elapsed_time)
-    records.sort()  # 시간 순으로 정렬 (작은 값이 높은 등수)
-    save_records(records)
-    return records.index(elapsed_time) + 1  # 0-based index이므로 1을 더해줌
-
-# 사용자 정의 이벤트 생성
-MY_EVENT = pygame.USEREVENT + 1
-
-
-# 타이머 설정: 2초마다 MY_EVENT는 이벤트가 발생하도록 설정
-pygame.time.set_timer(MY_EVENT, 3000)  # 2000밀리초(2초)마다 이벤트 발생
-
-font = pygame.font.Font(None, 36)
-start_time = pygame.time.get_ticks()
-
-# 보너스 아이템 초기 위치 설정
-b_rect.x = random.randint(0, screen_width - b_width)
-b_rect.y = 0
+power_charging = False  # 파워 충전 여부
 
 while running:
+    current_time = time.time()
+    elapsed_time = current_time - start_time
+    remaining_time = max(0, time_limit - elapsed_time)  # 남은 시간 계산
+
+    if remaining_time <= 0:
+        running = False  # 시간이 다 되면 게임 종료
+        continue  # 남은 코드를 실행하지 않도록 루프를 건너뜀
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == MY_EVENT:
-            geta()
-            
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_s:
-                pygame.mixer.music.stop()
-                print("음악 정지")
-            elif event.key == pygame.K_p:
-                pygame.mixer.music.play()
-                print("음악 재생")
-            elif event.key == pygame.K_i:
-                pygame.mixer.music.play(fade_ms= 3000)
-                print("음악 재생 - fade-in mode")
-            elif event.key == pygame.K_o:
-                pygame.mixer.music.fadeout(3000)
-                print("음악 종료 -fade - out mode")
-            elif event.key == pygame.K_u:
-                current_vol = pygame.mixer.music.get_volume()
-                current_vol += 0.1
-                pygame.mixer.music.set_volume(current_vol)
-                print(f"볼륨 증가:{current_vol}")
-            elif event.key == pygame.K_d:
-                current_vol = pygame.mixer.music.get_volume()
-                current_vol = max(0.0, current_vol - 0.1)
-                pygame.mixer.music.set_volume(current_vol)
-                print(f"볼륨 감소: {current_vol}")
+            if event.key == pygame.K_SPACE and not ball_fired:
+                power_charging = True  # 파워 충전 시작
+            elif event.key == pygame.K_UP:
+                ball_angle = min(90, ball_angle + 5)  # 각도를 위로 조정 (최대 90도)
+            elif event.key == pygame.K_DOWN:
+                ball_angle = max(0, ball_angle - 5)   # 각도를 아래로 조정 (최소 0도)
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_SPACE and not ball_fired:
+                power_charging = False  # 파워 충전 종료
+                ball_fired = True
+                ball_fired_time = time.time()  # 공이 발사된 시간 기록
+                # 공의 속도 설정 (발사)
+                ball_velocity_x = ball_power * math.cos(math.radians(ball_angle))
+                ball_velocity_y = -ball_power * math.sin(math.radians(ball_angle))
+                ball_power = 0  # 파워 초기화
 
-    elapsed_time = (pygame.time.get_ticks() - start_time) / 1000
+    # 파워 충전
+    if power_charging and not ball_fired:
+        ball_power = min(max_power, ball_power + 0.5)  # 파워 증가
 
-    timer_text = font.render(f"Time: {elapsed_time:.2f} seconds", True, (0, 0, 0))
-    b_text = font.render(f"count: {count_e}", True, (0, 0, 0))
+    # 공 이동
+    if ball_fired:
+        ball_x += ball_velocity_x
+        ball_y += ball_velocity_y
+        ball_velocity_y += gravity  # 중력 적용
 
-    dt = clock.tick(60) / 1000
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        s_rect.x -= s_speed * dt
-    if keys[pygame.K_RIGHT]:
-        s_rect.x += s_speed * dt
+        # 벽에 부딪혔을 때 튕기기
+        if ball_x <= 0 or ball_x >= screen_width - ball_radius * 2:
+            ball_velocity_x *= -1  # x축 반전
+        if ball_y <= 0 or ball_y >= screen_height - ball_radius * 2:
+            ball_velocity_y *= -1  # y축 반전
 
-    # 사각형의 y축 좌표 증가 (위에서 아래로 이동)
-    for rect in fall_rect_list:
-        rect.y += speed * dt
-    
-    # 보너스 아이템의 y축 좌표 증가
-    b_rect.y += speed * dt
+        # 농구 골대 통과 시 점수 증가
+        if hoop_x < ball_x < hoop_x + hoop_width and hoop_y < ball_y < hoop_y + hoop_height:
+            score += 1
+            ball_fired = False
+            ball_x = player_x + player_width
+            ball_y = player_y - ball_radius
+            hoop_y = random.randint(100, screen_height - 200)  # 농구 골대의 위치를 랜덤하게 변경
+            ball_fired_time = None  # 발사 시간 초기화
 
-    # 보너스 아이템이 화면 아래로 벗어나면 다시 위에서 생성
-    if b_rect.y > screen_height:
-        b_rect.x = random.randint(0, screen_width - b_width)
-        b_rect.y = 0
+        # 공이 농구 골대에 들어가지 않았을 때 3초 후 초기화
+        if ball_fired_time and time.time() - ball_fired_time > 3:
+            ball_fired = False
+            ball_x = player_x + player_width
+            ball_y = player_y - ball_radius
+            ball_velocity_x = 0
+            ball_velocity_y = 0
+            ball_fired_time = None  # 발사 시간 초기화
+            hoop_y = random.randint(100, screen_height - 200)  # 농구 골대의 위치를 랜덤하게 변경
 
-    # 성식이와 보너스 아이템 충돌 처리
-    if b_rect.colliderect(s_rect):
-        count_e += 1
-        b_rect.x = random.randint(0, screen_width - b_width)
-        b_rect.y = 0
-        sound_fire.play()
-              
-    if s_rect.collidelist(fall_rect_list) != -1:
-        the_end.play()
-        pygame.time.wait(2000)  
-
-        # 현재 게임 시간을 등수에 추가
-        rank = add_record(elapsed_time)
-        print(f"게임 종료! 당신의 등수는 {rank}위입니다.")
-        running = False
-        
-    count += 1
-    if count % 3 == 0:
-        speed += 2
-    
-    s_speed = 300 + count_e * 50
-
-    # 경계 처리
-    s_rect.x = max(0, min(s_rect.x, screen_width - s_rect.width))
-    s_rect.y = max(0, min(s_rect.y, screen_height - s_rect.height))
-    
     # 화면 그리기
-    screen.fill((255, 255, 255))
-    screen.blit(s_i, s_rect)
-    screen.blit(timer_text, (10, 10))
-    screen.blit(b_text, (100, 100))
-    screen.blit(b_i, b_rect)
+    screen.fill(WHITE)
 
-    for rect in fall_rect_list:
-        pygame.draw.rect(screen, (0, 0, 255), rect)
+    # 발사 각도를 나타내는 선 그리기
+    if not ball_fired:
+        angle_line_length = 100  # 각도를 나타내는 선의 길이
+        angle_line_x = ball_x + angle_line_length * math.cos(math.radians(ball_angle))
+        angle_line_y = ball_y - angle_line_length * math.sin(math.radians(ball_angle))
+        pygame.draw.line(screen, GREEN, (ball_x, ball_y), (angle_line_x, angle_line_y), 5)
 
+    # 플레이어 그리기
+    pygame.draw.rect(screen, BLUE, (player_x, player_y, player_width, player_height))
+
+    # 농구 골대 그리기
+    pygame.draw.rect(screen, RED, (hoop_x, hoop_y, hoop_width, hoop_height))
+
+    # 공 그리기
+    pygame.draw.circle(screen, BLACK, (int(ball_x), int(ball_y)), ball_radius)
+
+    # 텍스트로 각도, 파워, 점수, 남은 시간 표시
+    font = pygame.font.SysFont(None, 36)
+    angle_text = font.render(f"Angle: {ball_angle}°", True, BLACK)
+    screen.blit(angle_text, (10, 10))
+    power_text = font.render(f"Power: {int(ball_power)}", True, BLACK)
+    screen.blit(power_text, (10, 50))
+    score_text = font.render(f"Score: {score}", True, BLACK)
+    screen.blit(score_text, (10, 90))
+    time_text = font.render(f"Time: {int(remaining_time)}s", True, BLACK)
+    screen.blit(time_text, (10, 130))
+
+    # 화면 업데이트
     pygame.display.flip()
 
+    # 게임 속도 조절
+    clock.tick(FPS)
+
+# 게임 종료 후 결과 화면 출력
+screen.fill(WHITE)
+final_score_text = font.render(f"Final Score: {score}", True, BLACK)
+screen.blit(final_score_text, (screen_width // 2 - 100, screen_height // 2))
+pygame.display.flip()
+pygame.time.wait(3000)  # 3초 동안 결과를 보여줌
+
+# 게임 종료
 pygame.quit()
