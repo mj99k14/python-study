@@ -18,7 +18,7 @@ PINK = (255, 192, 203)
 
 # 플레이어 설정
 player = pygame.Rect(400, 500, 50, 50)
-gravity = 1.5  # 중력 값 설정
+gravity = 1.5  # 중력 값 설정    
 jump_velocity = 0  # 수직 속도
 is_jumping = False
 is_holding = False
