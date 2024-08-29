@@ -29,11 +29,13 @@ pygame.mixer.music.play(-1)
 clock = pygame.time.Clock()
 FPS = 60
 
-# 플레이어 설정
-player_x = 100
-player_y = screen_height - 100
-player_width = 50
-player_height = 100
+# 캐릭터 설정 (발사대 대체)
+character = pygame.image.load("pp.jpg")  # "pp.jpg" 이미지 경로로 변경
+character_width = 50
+character_height = 100
+character = pygame.transform.scale(character, (character_width, character_height))  # 캐릭터 크기 조정
+character_x = 100
+character_y = screen_height - character_height
 
 # 농구 골대 설정
 hoop = pygame.image.load("G.png")
@@ -47,8 +49,8 @@ hoop_rect_y = random.randint(100, screen_height - 200)
 ball = pygame.image.load("ball.png")
 ball_radius = 30
 ball = pygame.transform.scale(ball, (ball_radius * 2, ball_radius * 2))
-ball_rect_x = player_x + player_width
-ball_rect_y = player_y - ball_radius
+ball_rect_x = character_x + character_width
+ball_rect_y = character_y - ball_radius
 ball_angle = 45
 ball_fired = False
 ball_power = 0
@@ -80,7 +82,7 @@ def calculate_parabola_path(start_x, start_y, velocity_x, velocity_y, gravity, s
     path = []
     t = 0
     for _ in range(steps):
-        t += 0.1  # 점 사이의 간격을 조절 (0.1을 변경하여 점 사이의 간격을 조정)
+        t += 0.1
         x = start_x + velocity_x * t
         y = start_y + velocity_y * t + 0.5 * gravity * t ** 2
         if x > screen_width or y > screen_height:
@@ -93,8 +95,8 @@ def reset_ball_and_hoop():
     global ball_fired, ball_rect_x, ball_rect_y, ball_velocity_x, ball_velocity_y, ball_fired_time, ball_bounced_time
     global hoop_rect_y
     ball_fired = False
-    ball_rect_x = player_x + player_width
-    ball_rect_y = player_y - ball_radius
+    ball_rect_x = character_x + character_width
+    ball_rect_y = character_y - ball_radius
     ball_velocity_x = 0
     ball_velocity_y = 0
     ball_fired_time = None
@@ -174,9 +176,10 @@ while running:
         path = calculate_parabola_path(ball_rect_x, ball_rect_y, ball_power * math.cos(math.radians(ball_angle)), 
                                        -ball_power * math.sin(math.radians(ball_angle)), gravity)
         for point in path:
-            pygame.draw.circle(screen, BLUE, (int(point[0]), int(point[1])), 3)  # 작은 점으로 궤적 표시
+            pygame.draw.circle(screen, BLUE, (int(point[0]), int(point[1])), 3)
 
-    pygame.draw.rect(screen, BLUE, (player_x, player_y, player_width, player_height))
+    # 캐릭터 이미지 그리기
+    screen.blit(character, (character_x, character_y))
     screen.blit(hoop, (hoop_rect_x, hoop_rect_y))
     screen.blit(ball, (ball_rect_x, ball_rect_y))
 
@@ -191,7 +194,6 @@ while running:
     time_text = font.render(f"Time: {int(remaining_time)}s", True, BLACK)
     screen.blit(time_text, (10, 130))
 
-    # 파워 게이지 그리기 
     gauge_width = 200
     gauge_height = 20
     gauge_x = 10
