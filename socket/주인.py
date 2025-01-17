@@ -17,8 +17,8 @@ def handle_client(client_socket, client_address):
         client_socket.close()
 
 def run_server():
-    host = '127.0.0.1'  # 서버 호스트 주소
-    port = 12345        # 사용할 포트 번호
+    host = '210.101.236.188'  # 서버 호스트 주소
+    port = 5500     # 사용할 포트 번호
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
