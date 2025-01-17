@@ -1,14 +1,4 @@
 
-# 계산식:20점- (20 × 결석시간 수/ 총수업시간수)– 총수업시간계산법: 
-# 시수/주 × 15– 지각처리규칙: 
-# 지각3회는결석1시간으로처리– 결석처리규칙: 
-# 결석시수가총수업시수의1/4을초과할경우학점미부여(F처리  
-    
-    
-    
-    
-    
-
 def attendance_score(hours_per_week, absence_hours, tardy_count):
     okay = hours_per_week * 15
     if(absence_hours > (okay * 0.25)):
@@ -29,3 +19,19 @@ score = attendance_score(hours_per_week, absence_hours, tardy_count)
 print(f"당신의 출석 점수는 {score}점입니다.")
 
 
+
+# 함수 정의 점수 내는 식
+def score(week, hours, count):
+    n = count // 3 # 지각 처리 식
+    score = 20 - ((20 * (hours + n)) /( week * 15)) # 점수 구하는 식
+    return score 
+# 조건에 맞는 값 입력
+week = float(input("주당 수업시간을 입력하세요: "))
+hours = float(input("결석한 총 시간을 입력하세요: "))
+count = float(input("지각 횟수를 입력하세요: "))
+
+if hours * 4 > week * 15 : # 만약 결석 시수가 총수업시수에 1/4을 초과할 경우
+    print("당신의 출석 점수는 F (학점 미부여)점입니다.")
+
+elif score(week, hours, count): 
+    print("당신의 출석 점수는",format(score(week, hours, count),".2f"),"점입니다.")

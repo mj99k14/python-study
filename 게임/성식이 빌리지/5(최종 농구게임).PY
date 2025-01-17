@@ -22,7 +22,7 @@ background = pygame.image.load("path_to_image.png")
 background = pygame.transform.scale(background, (screen_width, screen_height))
 
 # 배경화면 노래
-background_music = pygame.mixer.music.load("background_basketball.mp3")
+background_music = pygame.mixer.music.load("C:/Users/USER/Desktop/pythonmj/background_basketball.mp3")
 pygame.mixer.music.play(-1)
 
 # 게임 속도 설정
@@ -117,7 +117,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE and not ball_fired:
+            if event.key == pygame.K_ESCAPE:  # ESC 키를 눌렀을 때 게임 종료
+                running = False
+            elif event.key == pygame.K_SPACE and not ball_fired:
                 power_charging = True
             elif event.key == pygame.K_UP:
                 ball_angle = min(90, ball_angle + 5)
