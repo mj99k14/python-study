@@ -13,7 +13,10 @@ print(f"listen on 127.0.0.0.1:5500")
 
 #accept(), ->사용자로 부터 연결 요청을 받았을떄 ->새로운 소켓 생성
 #클라이언트 ->connect()
-server_socket.accept()
 
-print("hello~~")
+client_socket ,client_addr = server_socket.accept()
+
+
+print(f"[client ip adderess] : {client_addr}")
+
 
