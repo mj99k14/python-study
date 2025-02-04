@@ -19,4 +19,14 @@ client_socket ,client_addr = server_socket.accept()
 
 print(f"[client ip adderess] : {client_addr}")
 
+# 클라이언트로부터 메세지를 수신
+client_socket.recv(1024)
+
+print(f"type do rcvd_data : {type(rcvd_data)}")
+#리시브 함수는 비동기?동기?
+#리시브한 함수의 자료형
+
+#수신한 메세지를 클라이언트로 전송
+
+
 
