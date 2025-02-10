@@ -12,6 +12,12 @@ is_active = [True]
 def handler_tx():
     while True:
         send_msg = input("TEXT: ")
+
+        if send_msg.lower() =="exit":
+            client_socket.close()
+            is_active[0] = False
+            break
+
         client_socket.sendall(send_msg.encode('utf-8'))
 
 
@@ -36,5 +42,8 @@ thread_rx = threading.Thread(target=handler_rx)
 
 thread_tx.start()
 thread_rx.start()
+
+thread_rx.join()
+thread_tx.join()
 
 print("hello")
