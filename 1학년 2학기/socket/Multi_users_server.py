@@ -1,7 +1,7 @@
 import socket
 import threading
-HOST = "127.0.0.1 "
-PROT = 12345
+HOST = "210.101.236.188"
+PORT = 12345
 
 client_list = []                       #연결된 클라이언트목록
 client_list_lock = threading.Lock()    #쓰레드  동기화를 위한 lock
@@ -37,10 +37,10 @@ def handler_client(client_socket:socket.socket,client_addr):
 
 #서버 소켓생성 및 설정
 server_socket =  socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-server_socket.bind((HOST,PROT))
+server_socket.bind((HOST,PORT))
 server_socket.listen(5)
 
-print(f"Server listening on{HOST}:{PROT}")
+print(f"Server listening on{HOST}:{PORT}")
 
 try:
     while True:
