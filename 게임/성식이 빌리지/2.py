@@ -91,7 +91,7 @@ while running:
     #장애물 충돌 처리
     collision_index = monster_rect.collidelist(obstacles)
     if collision_index != -1:
-        print(f"장애물 {collision_index}와 충돌 ! 성식이 아픔!병원감  ")
+        print(f"장애물 {collision_index}와 충돌 ! 성식이 아병원감  ")픔!
         monster_rect.topleft = previous_position
         screen.fill(BLUE)
         pygame.display.flip()
