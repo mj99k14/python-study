@@ -23,7 +23,7 @@ except ConnectionRefusedError:
 except Exception as e:
     print(f"클라이언트 에러: {e}")
 finally:
-    client_socket.close()
+    client_socket.close()     
 
 
 

@@ -13,7 +13,7 @@ RED = (255, 0 ,0)
 GREEN = (0, 255 ,0)
 YELLOW = (255, 255 , 0)
 
-background_music = pygame.mixer.music.load("tfile.mp3")
+background_music = pygame.mixer.music.load("C:/Users/USER/Desktop/pythonmj/python/tfile.mp3")
 pygame.mixer.music.play(-1)
 #장애물 생성 함수
 def create_obstacles(num_obstacles, size , screen_width, screen_height):
@@ -45,11 +45,20 @@ def create_items(num_items, size , screen_width, screen_height, obstacles):
 #장애물 및 아이템 생성
 obstacles = create_obstacles(5, 50 , screen_width, screen_height)
 items = create_items(10, 20 , screen_width, screen_height ,obstacles)
-#이동하는 rect생성
-monster = pygame.image.load("kkk.png")
+
+# 이미지 불러오기
+monster = pygame.image.load("C:/Users/USER/Desktop/pythonmj/python/sa.png")
+
+# 크기 조정 (예: 200x200)
+monster = pygame.transform.scale(monster, (30, 30))
+
+# 몬스터 크기 가져오기
 monster_rect = monster.get_rect()
+
 monster_rect_width = monster_rect.width
 monster_rect_height = monster_rect.height
+print(f"화면 너비: {screen_width}, 몬스터 너비: {monster_rect_width}")
+
 monster_rect.x = monster_rect.y 
 monster_rect.y = monster_rect.x
 
@@ -91,7 +100,7 @@ while running:
     #장애물 충돌 처리
     collision_index = monster_rect.collidelist(obstacles)
     if collision_index != -1:
-        print(f"장애물 {collision_index}와 충돌 ! 성식이 아병원감  ")픔!
+        print(f"장애물 {collision_index}와 충돌 ! 몬스터가 아파요!!")
         monster_rect.topleft = previous_position
         screen.fill(BLUE)
         pygame.display.flip()
