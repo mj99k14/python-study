@@ -16,4 +16,13 @@ visited = [False] * n
 def bfs_queue(start):
     queue = deque([start])
     visited[start] = True
-    
+
+    while queue:
+        v = queue.popleft()
+        print(v,end=' ')
+        for neighbor in graph[v]:
+            if not visited[neighbor]:
+                queue.append(neighbor)
+                visited[neighbor] =  True
+bfs_queue(v)
+
